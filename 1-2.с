@@ -2,8 +2,8 @@
 #include <math.h>
 
 /**
- * @brief Вычисляет площать квадрата с заданной стороной
- * @param side сторона квадрата
+ * @brief Вычисляет площать круга с заданной стороной
+ * @param side сторона круга
  * @return Рассчитанное значение
  */
 double s(const double side);
@@ -22,14 +22,14 @@ int main()
 {
     double side1 = getDouble();
     double side2 = getDouble();
-    printf("Square is %lf\n",s(side1));
-    printf("Square is %lf",s(side2));
+    printf("Circle area  is %lf\n",s(side1));
+    printf("Circle area  is %lf",s(side2));
     return 0;
 }
 
 double s(const double side)
 {
-    return pow(side,2) / (4.0 * 3.141592653589793);
+    return pow(side,2) / (4.0 * 3.14);
 }
 
 double getDouble()
