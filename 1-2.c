@@ -1,3 +1,4 @@
+#define _USE_MATH_DEFINES
 #include <stdio.h>
 #include <math.h>
 
@@ -23,13 +24,13 @@ int main()
     double side1 = getDouble();
     double side2 = getDouble();
     printf("Circle area  is %lf\n",s(side1));
-    printf("Circle area  is %lf",s(side2));
+    printf("Circle area  is %lf\n",s(side2));
     return 0;
 }
 
 double s(const double side)
 {
-    return pow(side,2) / (4.0 * 3.14);
+    return (pow(side, 2) * M_PI) / 4.0;
 }
 
 double getDouble()
@@ -38,3 +39,4 @@ double getDouble()
     scanf("%lf",&side1);
     return side1;
 }
+
