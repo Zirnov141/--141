@@ -30,7 +30,7 @@ int main()
 
 double s(const double side)
 {
-    return (pow(side, 2) * M_PI) / 4.0;
+    return (pow(side, 2)) / (4.0 * M_PI);
 }
 
 double getDouble()
