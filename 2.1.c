@@ -1,14 +1,12 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-
 /**
  * @brief Перечисление для выбора режима вычислений
  */
 enum Menu {
     PERIMETER = 1,
-    AREA = 2,
-    BOTH = 3
+    AREA = 2
 };
 
 /**
@@ -51,7 +49,7 @@ int main()
         exit(1);
     }
 
-    printf("\nWhat to calculate?\n1 - Perimeter\n2 - Area\n3 - Both\nYour choice: ");
+    printf("\nWhat to calculate?\n1 - Perimeter\n2 - Area\nchoice: ");
     
     int choice = (int)getDouble(); 
 
@@ -65,10 +63,6 @@ int main()
             printf("Perimeter is %lf\n", perimeter);
             break;
         case AREA:
-            printf("Square is %lf\n", area);
-            break;
-        case BOTH:
-            printf("Perimeter is %lf\n", perimeter);
             printf("Square is %lf\n", area);
             break;
         default:
