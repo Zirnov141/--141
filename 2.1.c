@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+
 /**
- * @brief Перечисление для выбора режима вычислений
+ * @brief режимы вычислений
  */
 enum Menu {
     PERIMETER = 1,
@@ -10,20 +11,32 @@ enum Menu {
 };
 
 /**
- * @brief Считывает с клавиатуры занчение с плавающей точкой
- * @return Считанное значение
+ * @brief считывание числа
  */
 double getDouble();
 
 /**
- * @brief Проверяет, что сторона - положительное число
- * @param side - считанное значение стороны квадрата
+ * @brief расчет длины стороны
  */
-void checkSide(const double side);
+double getSide(double x1, double y1, double x2, double y2);
 
 /**
- * @brief Точка входа в программу
- * @return 0, если программа выполнена корректно, иначе не 0
+ * @brief проверка треугольника
+ */
+void check(double a, double b, double c);
+
+/**
+ * @brief расчет периметра
+ */
+double getPerimeter(double a, double b, double c);
+
+/**
+ * @brief расчет площади
+ */
+double getArea(double a, double b, double c);
+
+/**
+ * @brief главная функция
  */
 int main()
 {
@@ -36,59 +49,72 @@ int main()
     printf("Enter x3: "); double x3 = getDouble();
     printf("Enter y3: "); double y3 = getDouble();
 
-    double a = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
-    double b = sqrt(pow(x3 - x2, 2) + pow(y3 - y2, 2));
-    double c = sqrt(pow(x1 - x3, 2) + pow(y1 - y3, 2));
+    // измерение длины всех сторон треугольника
+    double a = getSide(x1, y1, x2, y2);
+    double b = getSide(x2, y2, x3, y3);
+    double c = getSide(x3, y3, x1, y1);
 
-    checkSide(a);
-    checkSide(b);
-    checkSide(c);
+    // проверка существования треугольника
+    check(a, b, c);
 
-    if ((a + b <= c) || (a + c <= b) || (b + c <= a)) {
-        printf("Error");
-        exit(1);
-    }
+    double perimeter = getPerimeter(a, b, c);
+    double area = getArea(a, b, c);
 
-    printf("\nWhat to calculate?\n1 - Perimeter\n2 - Area\nchoice: ");
     
+    printf("\nWhat to calculate?\n%d - Perimeter\n%d - Area\nchoice: ", PERIMETER, AREA);
     int choice = (int)getDouble(); 
 
-    double perimeter = a + b + c;
-    double p = perimeter / 2.0;
-    double area = sqrt(p * (p - a) * (p - b) * (p - c));
-
+    // вывод выбора пользователя
     switch (choice)
     {
-        case PERIMETER:
+        case PERIMETER: 
             printf("Perimeter is %lf\n", perimeter);
-            break;
-        case AREA:
+            break;      
+            
+        case AREA:     
             printf("Square is %lf\n", area);
-            break;
-        default:
+            break;      
+            
+        default:       
             printf("Error");
-            exit(1);
+            exit(1);    
     }
 
-    return 0;
+    return 0; 
 }
 
 double getDouble()
 {
-    double side1 = 0.0;
-    if (scanf("%lf", &side1) != 1)
+    double value = 0.0;
+    if (scanf("%lf", &value) != 1)
     {
         printf("Error");
         exit(1);
     }
-    return side1;
+    return value;
 }
 
-void checkSide(const double side)
+double getSide(double x1, double y1, double x2, double y2)
 {
-   if (side <= 0)
-   {
-       printf("Error");
-       exit(1);
-   }
+    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+}
+
+void check(double a, double b, double c)
+{
+    if ((a + b <= c) || (a + c <= b) || (b + c <= a)) 
+    {
+        printf("Error");
+        exit(1);
+    }
+}
+
+double getPerimeter(double a, double b, double c)
+{
+    return a + b + c; 
+}
+
+double getArea(double a, double b, double c)
+{
+    double p = getPerimeter(a, b, c) / 2.0;       
+    return sqrt(p * (p - a) * (p - b) * (p - c)); 
 }
