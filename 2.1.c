@@ -12,31 +12,49 @@ enum Menu {
 
 /**
  * @brief считывание числа
+ * @return - считанное значение с плавающей точкой
  */
 double getDouble();
 
 /**
  * @brief расчет длины стороны
+ * @param x1 координата x первой точки
+ * @param y1 координата y первой точки
+ * @param x2 координата x второй точки
+ * @param y2 координата y второй точки
+ * @return длина отрезка между двумя точками
  */
 double getSide(double x1, double y1, double x2, double y2);
 
 /**
  * @brief проверка треугольника
+ * @param a сторона ab
+ * @param b сторона bc
+ * @param c сторона ca
  */
 void check(double a, double b, double c);
 
 /**
  * @brief расчет периметра
+ * @param a сторона AB
+ * @param b сторона BC
+ * @param c сторона CA
+ * @return сумма длин всех сторон
  */
 double getPerimeter(double a, double b, double c);
 
 /**
  * @brief расчет площади
+ * @param a сторона AB
+ * @param b сторона BC
+ * @param c сторона CA
+ * @return площадь треугольника 
  */
 double getArea(double a, double b, double c);
 
 /**
  * @brief главная функция
+ * @return - 0 при успешном завершении
  */
 int main()
 {
@@ -49,12 +67,10 @@ int main()
     printf("Enter x3: "); double x3 = getDouble();
     printf("Enter y3: "); double y3 = getDouble();
 
-    // измерение длины всех сторон треугольника
     double a = getSide(x1, y1, x2, y2);
     double b = getSide(x2, y2, x3, y3);
     double c = getSide(x3, y3, x1, y1);
 
-    // проверка существования треугольника
     check(a, b, c);
 
     double perimeter = getPerimeter(a, b, c);
@@ -64,7 +80,6 @@ int main()
     printf("\nWhat to calculate?\n%d - Perimeter\n%d - Area\nchoice: ", PERIMETER, AREA);
     int choice = (int)getDouble(); 
 
-    // вывод выбора пользователя
     switch (choice)
     {
         case PERIMETER: 
