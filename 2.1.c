@@ -24,7 +24,7 @@ double getDouble();
  * @param y2 координата y второй точки
  * @return длина отрезка между двумя точками
  */
-double getSide(double x1, double y1, double x2, double y2);
+double getSide(const double x1, const double y1, const double x2, const double y2);
 
 /**
  * @brief проверка треугольника
@@ -32,7 +32,7 @@ double getSide(double x1, double y1, double x2, double y2);
  * @param b сторона bc
  * @param c сторона ca
  */
-void check(double a, double b, double c);
+void check(const double a, const double b, const double c);
 
 /**
  * @brief расчет периметра
@@ -41,7 +41,7 @@ void check(double a, double b, double c);
  * @param c сторона CA
  * @return сумма длин всех сторон
  */
-double getPerimeter(double a, double b, double c);
+double getPerimeter(const double a, const double b, const double c);
 
 /**
  * @brief расчет площади
@@ -50,7 +50,7 @@ double getPerimeter(double a, double b, double c);
  * @param c сторона CA
  * @return площадь треугольника 
  */
-double getArea(double a, double b, double c);
+double getArea(const double a, const double b, const double c);
 
 /**
  * @brief главная функция
@@ -109,12 +109,12 @@ double getDouble()
     return value;
 }
 
-double getSide(double x1, double y1, double x2, double y2)
+double getSide(const double x1, const double y1, const double x2, const double y2)
 {
     return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
 }
 
-void check(double a, double b, double c)
+void check(const double a, const double b, const double c)
 {
     if ((a + b <= c) || (a + c <= b) || (b + c <= a)) 
     {
@@ -123,12 +123,12 @@ void check(double a, double b, double c)
     }
 }
 
-double getPerimeter(double a, double b, double c)
+double getPerimeter(const double a, const double b, const double c)
 {
     return a + b + c; 
 }
 
-double getArea(double a, double b, double c)
+double getArea(const double a, const double b, const double c)
 {
     double p = getPerimeter(a, b, c) / 2.0;       
     return sqrt(p * (p - a) * (p - b) * (p - c)); 
