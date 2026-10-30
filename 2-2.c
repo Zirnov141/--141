@@ -2,43 +2,57 @@
 #include <math.h>
 #include <float.h>
 #include <stdlib.h>
-/** a глобальная константа
-*/
-const double a = 1.6;
 
-double getDouble();
-double y(const double x);
 /**
- * @brief главная функция программы
- * @return 0 при успешном выполнении
+ * @brief считывает вещественное число с консоли и проверяет на корректность
+ * @return считанное вещественное число 
+ */
+double getDouble();
+
+/**
+ * @brief вычисляет значение функции для заданного параметра 
+ * @param x аргумент функции введенный пользователем
+ * @param a параметр функции
+ * @return Рассчитанное значение функции y
+ */
+double y(const double x, const double a);
+
+/**
+ * @brief Главная функция программы
+ * @return  0 при успешном завершении
  */
 int main()
 {
+    const double a = 1.6;
+
     printf("Enter x: ");
     double x = getDouble();
-    printf("y = %lf\n", y(x));
+    printf("y = %lf\n", y(x, a));
     return 0;
 }
+
 /**
- * @brief считывает вещественное число с консоли и проверяет корректность 
- * @return считанное вещественное число
+ * @brief считывает вещественное число с консоли и проверяет на корректность
+ * @return считанное вещественное число 
  */
 double getDouble()
 {
     double value = 0.0;
-    if (scanf("%lf",&value) != 1)
-        {
-            printf("Error");
-            exit(1);
-        }
+    if (scanf("%lf", &value) != 1)
+    {
+        printf("Error\n");
+        exit(1);
+    }
     return value;
 }
+
 /**
- * @brief вычисляет значение функции 
- * @param x аргумент функции
- * @return рассчитанное значение функции y
+ * @brief вычисляет значение функции для заданного параметра 
+ * @param x аргумент функции введенный пользователем
+ * @param a параметр функции
+ * @return Рассчитанное значение функции y
  */
-double y(const double x)
+double y(const double x, const double a)
 {
     if (x > a)
     {
