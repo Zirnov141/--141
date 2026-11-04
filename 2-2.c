@@ -31,10 +31,6 @@ int main()
     return 0;
 }
 
-/**
- * @brief считывает вещественное число с консоли и проверяет на корректность
- * @return считанное вещественное число 
- */
 double getDouble()
 {
     double value = 0.0;
@@ -46,12 +42,6 @@ double getDouble()
     return value;
 }
 
-/**
- * @brief вычисляет значение функции для заданного параметра 
- * @param x аргумент функции введенный пользователем
- * @param a параметр функции
- * @return Рассчитанное значение функции y
- */
 double y(const double x, const double a)
 {
     if (x > a)
@@ -67,3 +57,4 @@ double y(const double x, const double a)
         return (a / x) + sin(x);
     }
 }
+
