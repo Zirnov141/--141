@@ -7,15 +7,17 @@
  * @return - считанное положительное значение с плавающей точкой
  */
  double getdouble();
+
  /**
   * @brief - проверка коректности исходных данных
   * @param- r радиус 
   * @param- a сторона первой пластинки
   * @param- b сторона первой пластинки
-  * @param- c сторона первой пластинки
-  * @param- d сторона первой пластинки
+  * @param- c сторона второй пластинки
+  * @param- d сторона второй пластинки
   */
 void checkdata(const double r,const double a,const double b,const double c,const double d);
+
 /**
  * @brief проверка возможности размещения двух пластинок в окружности
  * @param r радиус заготовки
@@ -26,6 +28,7 @@ void checkdata(const double r,const double a,const double b,const double c,const
  * @return 1, если можно вырезать; 0, если нельзя
  */
 int cancutout(const double r,const double a,const double b,const double c,const double d);
+
 /**
  * @brief главная функция 
  * @return 0 при успешном завершении
@@ -79,72 +82,72 @@ void checkdata(const double r, const double a, const double b, const double c, c
     }
 }
 
-int cancutout(const double r,const double a,const double b,const double c,const double d)
+int cancutout(const double r, const double a, const double b, const double c, const double d)
 {
-    double max_d2 = 4.0 * r * r;
-    double w, h;
-
-  int cancutout(const double r, const double a, const double b, const double c, const double d)
-{
-    double max_d2 = 4.0 * r * r;
-    double w, h;
-
-    w = a + c;
-    if (b > d) 
+    if ((a * a + b * b) > 4.0 * r * r) 
     {
-        h = b;
-    } 
-    else 
-    {
-        h = d;
+        return 0;
     }
-    if (w * w + h * h <= max_d2) 
+    if ((c * c + d * d) > 4.0 * r * r) 
+    {
+        return 0;
+    }
+
+
+    if ((a + c) * (a + c) + (b + d) * (b + d) <= 4.0 * r * r) 
+    {
+        return 1;
+    }
+    if (fmax(a, c) * fmax(a, c) + (b + d) * (b + d) <= 4.0 * r * r) 
+    {
+        return 1;
+    }
+    if ((a + c) * (a + c) + fmax(b, d) * fmax(b, d) <= 4.0 * r * r) 
     {
         return 1;
     }
 
-    w = a + d;
-    if (b > c) 
+
+    if ((a + d) * (a + d) + (b + c) * (b + c) <= 4.0 * r * r) 
     {
-        h = b;
-    } 
-    else 
-    {
-        h = c;
+        return 1;
     }
-    if (w * w + h * h <= max_d2) 
+    if (fmax(a, d) * fmax(a, d) + (b + c) * (b + c) <= 4.0 * r * r) 
+    {
+        return 1;
+    }
+    if ((a + d) * (a + d) + fmax(b, c) * fmax(b, c) <= 4.0 * r * r) 
     {
         return 1;
     }
 
-    w = b + c;
-    if (a > d) 
+
+    if ((b + c) * (b + c) + (a + d) * (a + d) <= 4.0 * r * r) 
     {
-        h = a;
-    } 
-    else 
-    {
-        h = d;
+        return 1;
     }
-    if (w * w + h * h <= max_d2) 
+    if (fmax(b, c) * fmax(b, c) + (a + d) * (a + d) <= 4.0 * r * r) 
+    {
+        return 1;
+    }
+    if ((b + c) * (b + c) + fmax(a, d) * fmax(a, d) <= 4.0 * r * r) 
     {
         return 1;
     }
 
-    w = b + d;
-    if (a > c) 
+
+    if ((b + d) * (b + d) + (a + c) * (a + c) <= 4.0 * r * r) 
     {
-        h = a;
-    } 
-    else 
-    {
-        h = c;
+        return 1;
     }
-    if (w * w + h * h <= max_d2) 
+    if (fmax(b, d) * fmax(b, d) + (a + c) * (a + c) <= 4.0 * r * r) 
+    {
+        return 1;
+    }
+    if ((b + d) * (b + d) + fmax(a, c) * fmax(a, c) <= 4.0 * r * r) 
     {
         return 1;
     }
 
     return 0;
-}
 }
