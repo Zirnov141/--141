@@ -3,12 +3,44 @@
 #include <math.h>
 #include <stdbool.h>
 
+/**
+ * @brief считывание вещественного числа с проверкой ввода
+ * @param message текст подсказки для пользователя
+ * @return считанное значение типа double
+ */
 double getValue(const char* message);
+
+/**
+ * @brief проверка корректности шага табулирования
+ * @param step шаг изменения аргумента
+ */
 void checkStep(const double step);
+
+/**
+ * @brief проверка корректности границ отрезка
+ * @param xbegin начало отрезка
+ * @param xend конец отрезка
+ */
 void checkSegment(const double xbegin, const double xend);
+
+/**
+ * @brief проверка принадлежности точки области определения функции
+ * @param x значение аргумента
+ * @return true, если функция определена в точке; иначе false
+ */
 bool isOOF(const double x);
+
+/**
+ * @brief вычисление значения функции y = 3x - 14 + e^x - e^(-x)
+ * @param x значение аргумента
+ * @return вычисленное значение функции
+ */
 double getY(const double x);
 
+/**
+ * @brief главная функция программы
+ * @return 0 при успешном завершении
+ */
 int main()
 {
     double xbegin = getValue("Enter segment start: ");
@@ -16,7 +48,6 @@ int main()
     double step = getValue("Enter step: ");
     checkStep(step);
     checkSegment(xbegin, xend);
-
     double x = xbegin;
     while (x <= xend + step / 2.0)
     {
@@ -75,3 +106,4 @@ double getY(const double x)
 {
     return 3.0 * x - 14.0 + exp(x) - exp(-x);
 }
+
